@@ -21,7 +21,7 @@ obj_list = ios_cfg.find_objects(r"set transform-set")
 result = []
 for o in obj_list:
     if not o.re_search(r"AES-SHA"):             #Find non-AES transforms
-        result.append(o.parent.text)
+        result.append([o.parent.text, o.text])
 
 for r in result:
     print r
