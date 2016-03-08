@@ -1,0 +1,7 @@
+---
+access_switches:
+  - { hostname: switch1, secret: HorriblePassWord, access_vlan: 100, ip_addr: 10.0.1.1, default_gateway: 10.0.1.254, snmp_community: Publick, snmp: true }
+  - { hostname: switch2, secret: HorriblePassWord, access_vlan: 100, ip_addr: 10.0.2.1, default_gateway: 10.0.2.254, snmp_community: Publick, snmp: true }
+  - { hostname: switch3, secret: HorriblePassWord, access_vlan: 100, ip_addr: 10.0.3.1, default_gateway: 10.0.3.254, snmp_community: Publick, snmp: false }
+  - { hostname: switch4, secret: HorriblePassWord, access_vlan: 100, ip_addr: 10.0.4.1, default_gateway: 10.0.4.254, snmp_community: Publick, snmp: false }
+  - { hostname: switch5, secret: HorriblePassWord, access_vlan: 100, ip_addr: 10.0.5.1, default_gateway: 10.0.5.254, snmp_community: Publick, snmp: true }
