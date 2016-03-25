@@ -1,0 +1,24 @@
+---
+
+- name: Interface Configuration
+  hosts: arista
+
+  tasks:
+    - name: Configure Primary Ethernet interface with trunk tag ALPHA, BRAVO, CHARLIE
+      eos_switchport: name={{item.name}} mode=trunk trunk_native_vlan=1 trunk_allowed_vlans=654-656
+        username={{eapi_username}}
+        password={{eapi_password}}
+        host={{eapi_hostname}}
+        port={{eapi_port}}
+        transport=https
+      with_items:
+        - {name: Ethernet5}
+    - name: Set Primary Ethernet interface description
+      eos_interface: name={{item.name}} description="*** IN USE ***"
+        username={{eapi_username}}
+        password={{eapi_password}}
+        host={{eapi_hostname}}
+        port={{eapi_port}}
+        transport=https
+      with_items:
+        - {name: Ethernet5}

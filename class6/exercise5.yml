@@ -1,0 +1,19 @@
+---
+
+- name: Cisco File Configuration
+  hosts: cisco
+  gather_facts: False
+
+  tasks:
+    - name: Copy file to Cisco IOS device
+      cisco_file_transfer:
+        source_file="/home/sdodd/pynet/class6/test.txt"
+        dest_file=sdodd.txt
+        username={{username}}
+        password={{password}}
+        host={{host}}
+        port={{port}}
+        overwrite=true
+        enable_scp=true
+      with_items:
+        - {name: test.txt}

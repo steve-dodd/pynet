@@ -1,0 +1,35 @@
+---
+
+- name: Interface Configuration
+  hosts: arista
+
+  tasks:
+    - name: Cleanup Primary Ethernet interface
+      eos_switchport: name={{item.name}} mode=access access_vlan=1 trunk_allowed_vlans=1-4094
+        username={{eapi_username}}
+        password={{eapi_password}}
+        host={{eapi_hostname}}
+        port={{eapi_port}}
+        transport=https
+      with_items:
+        - {name: Ethernet5}
+    - name: Cleanup Primary Ethernet interface description
+      eos_interface: name={{item.name}} description=""
+        username={{eapi_username}}
+        password={{eapi_password}}
+        host={{eapi_hostname}}
+        port={{eapi_port}}
+        transport=https
+      with_items:
+        - {name: Ethernet5}
+    - name: Cleanup VLANs
+      eos_vlan: name={{item.name}} vlanid={{item.vlanid}} state=absent
+        username={{eapi_username}}
+        password={{eapi_password}}
+        host={{eapi_hostname}}
+        port={{eapi_port}}
+        transport=https
+      with_items:
+        - {name: ALPHA, vlanid: 654}
+        - {name: BRAVO, vlanid: 655}
+        - {name: CHARLIE, vlanid: 656}

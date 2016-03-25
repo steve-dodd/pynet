@@ -1,0 +1,17 @@
+---
+
+- name: VLAN Configuration
+  hosts: arista
+
+  tasks:
+    - name: Configure Primary Ethernet interface with 3 vlans
+      eos_vlan: name={{item.name}} vlanid={{item.vlanid}}
+        username={{eapi_username}}
+        password={{eapi_password}}
+        host={{eapi_hostname}}
+        port={{eapi_port}}
+        transport=https
+      with_items:
+        - {name: ALPHA, vlanid: 654}
+        - {name: BRAVO, vlanid: 655}
+        - {name: CHARLIE, vlanid: 656}
